@@ -1,0 +1,36 @@
+# Introduction
+
+We are building an infrastructure that consists of multiple applications.
+One application is written in PHP and connects to a MySQL server.
+Another is written in node.js and is fairly static.
+We want to balance both these applications and be able to spin off more application
+services if needed. Both applications should be behind SSL and do an SSL termination,
+so all internal requests happen without SSL.
+
+## Components
+
+1 nodejs application
+1 php application
+1 php-fpm 8.2
+1 MySQL database
+1 HaProxy
+1 Nginx as SSL termination
+
+### Assumptions
+
+1. The infrastructure is running on a Linux machine
+2. To use docker or not is up to the candidate
+3. The infrastructure is running on a single machine,
+   but leave room for it to be split into multiple machines later
+
+# Task
+
+Use ansible to create repeatable infrastructure that can quickly spin off mentioned
+applications. Take a note of everything additional you have to add, to make it production
+ready. Include all necessary steps to setup machine from scratch, keeping in mind
+security and performance.
+
+Provide a way to run the infrastructure locally, so it can be tested. Add all necessary
+comments that you think will help us understand your thought process.
+
+Take a note on how much time you spent on the task.
