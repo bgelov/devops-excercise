@@ -1,0 +1,42 @@
+# Server setup workflow
+name: Server_setup_workflow
+   
+on:
+  workflow_dispatch:
+    inputs:
+      server_ip:
+        required: true
+        description: "Server ip"
+        type: string
+    
+      server_username:
+        required: true
+        description: "Root username"
+        default: "root"
+        type: string
+    
+      server_password:
+        required: true
+        description: "Root password"
+        type: string
+    
+jobs:
+  server-setup:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Run server setup
+      run: echo "Running server setup job..."
+
+    - name: Checkout code
+      uses: actions/checkout@v3
+          
+    - name: Run server setup playbook
+      uses: dawidd6/action-ansible-playbook@v2
+      with:
+        playbook: server-setup.yml
+        directory: ./ansible
+        inventory: |
+          [all]
+          ${{ github.event.inputs.server_ip }} ansible_user=${{ github.event.inputs.server_username }} ansible_password=${{ github.event.inputs.server_password }}
+          
