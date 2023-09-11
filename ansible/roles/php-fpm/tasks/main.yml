@@ -14,8 +14,7 @@
     name:
       - php8.2
       - php8.2-fpm
-      - php-pdo-mysql
-      - php-mysql
+      - php8.2-mysql
     state: present
   notify:
     - Restart php8.2-fpm
