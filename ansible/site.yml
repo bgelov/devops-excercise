@@ -1,0 +1,9 @@
+# Main yml file with roles
+---
+- hosts: server1
+  roles:
+    - role: nginx
+
+#- hosts: server1
+#  roles:
+#    - role: mysql
