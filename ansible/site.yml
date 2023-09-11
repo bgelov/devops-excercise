@@ -7,3 +7,4 @@
   roles:
     - nginx
     - nodejs
+    - mysql
