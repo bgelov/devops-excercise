@@ -1,0 +1,16 @@
+---
+
+- name: Update apt repo and cache
+  apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+  
+- name: Install HAProxy
+  apt:
+    name: haproxy
+    state: present
+
+#- name: Copy HAProxy configuration
+#  copy:
+#    src: ..//haproxy.cfg
+#    dest: /etc/haproxy/haproxy.cfg
+#  notify:
+#    - Restart HAProxy

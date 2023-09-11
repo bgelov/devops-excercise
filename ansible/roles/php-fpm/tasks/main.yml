@@ -1,0 +1,17 @@
+# PHP-FPM role tasks
+---
+
+- name: Add PHP repository
+  apt_repository:
+    repo: ppa:ondrej/php
+    state: present
+
+- name: Update apt repo and cache
+  apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+
+- name: Install PHP 8.2 and PHP-FPM 8.2
+  apt:
+    name:
+      - php8.2
+      - php8.2-fpm
+    state: present
