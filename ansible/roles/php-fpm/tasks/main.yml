@@ -24,6 +24,12 @@
     src: ../services/php-service/
     dest: /apps/php-service
     
+- name: UFW - Allow 9000 port
+  community.general.ufw:
+    rule: allow
+    port: '9000'
+    proto: tcp
+    
 - name: Add php-service Nginx config
   template:
     src: ../services/php-service/php-service

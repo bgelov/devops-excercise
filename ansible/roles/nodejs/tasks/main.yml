@@ -36,6 +36,12 @@
     src: ../services/nodejs-service/
     dest: /apps/nodejs-service
 
+- name: UFW - Allow 8000 port
+  community.general.ufw:
+    rule: allow
+    port: '8000'
+    proto: tcp
+
 - name: Create systemd service file
   template:
     src: ../services/nodejs-service/nodejs-service.service
