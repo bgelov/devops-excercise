@@ -14,6 +14,11 @@
     src: ../services/haproxy/haproxy.cfg
     dest: /etc/haproxy/haproxy.cfg 
 
+- name: Copy ssl certificate
+  copy:
+    src: ../services/haproxy/prod-02.ip03.ru.pem
+    dest: /etc/haproxy/prod-02.ip03.ru.pem
+
 - name: Check HAProxy configuration
   command: haproxy -c -f /etc/haproxy/haproxy.cfg
   register: result
