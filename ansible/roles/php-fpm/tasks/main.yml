@@ -16,7 +16,11 @@
       - php8.2-fpm
     state: present
 
-
+- name: Copy php app files
+  copy:
+    src: ../services/php-service/
+    dest: /apps/php-service
+    
 - name: Add php-service Nginx config
   template:
     src: ../services/php-service/php-service
