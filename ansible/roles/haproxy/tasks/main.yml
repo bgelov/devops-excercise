@@ -1,3 +1,4 @@
+# HAProxy role tasks
 ---
 
 - name: Update apt repo and cache
@@ -8,9 +9,9 @@
     name: haproxy
     state: present
 
-#- name: Copy HAProxy configuration
-#  copy:
-#    src: ..//haproxy.cfg
-#    dest: /etc/haproxy/haproxy.cfg
-#  notify:
-#    - Restart HAProxy
+- name: Copy HAProxy configuration
+  copy:
+    src: ../services/haproxy/haproxy.cfg
+    dest: /etc/haproxy/haproxy.cfg
+  notify:
+    - Restart HAProxy

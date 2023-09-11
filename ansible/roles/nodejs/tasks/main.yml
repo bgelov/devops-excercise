@@ -30,11 +30,15 @@
   user:
     name: "node"
     state: present
+
+- name: Remove files in app directory
+  ansible.builtin.command:
+    cmd: "rm -rf /apps/nodejs-service/*"
     
 - name: Copy node app files
   copy:
-    src: ../services/nodejs-service/
-    dest: /apps/nodejs-service
+    src: ../services/nodejs-service/index.js
+    dest: /apps/nodejs-service/index.js
 
 - name: UFW - Allow 8000 port
   community.general.ufw:

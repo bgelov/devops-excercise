@@ -28,8 +28,8 @@
 
 - name: Copy php app files
   copy:
-    src: ../services/php-service/
-    dest: /apps/php-service/
+    src: ../services/php-service/index.php
+    dest: /apps/php-service/index.php
     
 - name: UFW - Allow 9000 port
   community.general.ufw:
