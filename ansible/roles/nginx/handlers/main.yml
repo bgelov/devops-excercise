@@ -5,4 +5,3 @@
   systemd:
     name: nginx
     state: restarted
-    ignore_errors: yes
