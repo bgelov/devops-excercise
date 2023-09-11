@@ -14,7 +14,7 @@
     name:
       - php8.2
       - php8.2-fpm
-      - php-pdo
+      - php-pdo-mysql
       - php-mysql
     state: present
   notify:
