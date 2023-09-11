@@ -41,3 +41,11 @@ jobs:
           ${{ github.event.inputs.server_ip }} ansible_user=${{ github.event.inputs.server_username }} ansible_password='${{ secrets.TEMP_ROOT_PASSWORD }}'
         options: |
           --extra-vars "ansible_public_key='${{ secrets.ANSIBLE_PUBLIC_SSH_KEY }}' ansible_username='${{ secrets.ANSIBLE_USERNAME }}'"
+
+    - name: Check SSH with ANSIBLE_PRIVATE_SSH_KEY
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ github.event.inputs.server_ip }}
+        username: ${{ secrets.ANSIBLE_USERNAME }}
+        key: ${{ secrets.ANSIBLE_PRIVATE_SSH_KEY }}
+        script: whoami
