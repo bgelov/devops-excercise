@@ -17,6 +17,8 @@
       - php-pdo
       - php-mysql
     state: present
+  notify:
+    - Restart php8.2-fpm
 
 - name: Copy php app files
   copy:
