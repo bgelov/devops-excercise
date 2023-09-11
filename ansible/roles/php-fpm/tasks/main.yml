@@ -22,6 +22,11 @@
     name: "phpfpm"
     state: present
     
+- name: Create php app directory
+  file:
+    path: /apps/php-service
+    state: directory
+
 - name: Remove files in app directory
   ansible.builtin.command:
     cmd: "rm -rf /apps/php-service/*"

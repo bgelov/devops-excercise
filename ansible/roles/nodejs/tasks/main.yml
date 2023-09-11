@@ -31,6 +31,11 @@
     name: "node"
     state: present
 
+- name: Create nodejs app directory
+  file:
+    path: /apps/nodejs-service
+    state: directory
+
 - name: Remove files in app directory
   ansible.builtin.command:
     cmd: "rm -rf /apps/nodejs-service/*"
