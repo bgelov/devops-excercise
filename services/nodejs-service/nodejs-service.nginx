@@ -1,6 +1,6 @@
 server {
 	listen 8080;
-	server_name 45.90.220.42 prod-02.ip03.ru;
+	server_name prod-02.ip03.ru;
 
 	location /nodejs-service {
 		proxy_pass  http://localhost:8000/;

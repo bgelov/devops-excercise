@@ -15,3 +15,13 @@
     state: absent
   notify:
     - Restart Nginx
+
+- name: Add ssl_certificate
+  copy:
+    src: ../services/nginx/prod-02.ip03.ru_fullchain.pem
+    dest: /etc/nginx/ssl/prod-02.ip03.ru_fullchain.pem
+
+- name: Add ssl_certificate_key
+  copy:
+    src: ../services/nginx/prod-02.ip03.ru_privkey.pem
+    dest: /etc/nginx/ssl/prod-02.ip03.ru_privkey.pem
