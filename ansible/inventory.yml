@@ -2,4 +2,3 @@ all:
   hosts:
     server1:
       ansible_host: 45.90.220.42
-      

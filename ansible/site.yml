@@ -2,7 +2,7 @@
 ---
 - hosts: server1
   roles:
-    - role: nginx
+    - nginx
 
 #- hosts: server1
 #  roles:
