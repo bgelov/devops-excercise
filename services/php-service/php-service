@@ -1,6 +1,6 @@
 server {
          listen 9000;
-		 server_name prod-02.ip03.ru;
+		 server_name 45.90.220.42 prod-02.ip03.ru;
 		 root /apps/php-service;
 
          access_log /var/log/nginx/prod-02.ip03.ru-access.log;
