@@ -1,0 +1,35 @@
+# NodeJS role tasks
+---
+
+- name: Update apt repo and cache
+  apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+  
+- name: Installing nodejs
+  apt:
+    name: nodejs
+    state: present
+    
+- name: Create node user
+  user:
+    name: "node"
+    state: present
+    
+- name: Copy node app files
+  copy:
+    src: ../services/nodejs-service/
+    dest: /apps/nodejs-service
+
+- name: Create systemd service file
+  template:
+    src: ../services/nodejs-service/nodejs-service.service
+    dest: /etc/systemd/system/nodejs-service.service
+
+- name: Reload systemd
+  systemd:
+    daemon_reload: yes
+
+- name: Start Nodejs service
+  systemd:
+    name: nodejs-service
+    state: started
+    enabled: yes
