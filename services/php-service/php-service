@@ -1,11 +1,28 @@
 server {
-    listen 9000;
-	server_name prod-02.ip03.ru;
-    root /apps/php-service;
-    index index.php;
+		listen 9000;
+		server_name prod-02.ip03.ru;
+		root /apps/php-service;
+
+            location / {
+        try_files $uri $uri/ /index.php?$args;
+        index  index.php index.html index.htm;
+    }
+
+    if (!-d $request_filename) {
+        rewrite ^/(.*)/$ /$1 permanent;
+    }
+
 
     location ~ \.php$ {
-        include snippets/fastcgi-php.conf;
+        try_files $uri $uri/ /index.php?$args;
+        index index.php index.html index.htm;
+
         fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;
+        fastcgi_index  index.php;
+        fastcgi_param  SCRIPT_FILENAME  /apps/php-service$fastcgi_script_name;
+        fastcgi_param  APPLICATION_ENV testing;
+        fastcgi_param  PATH /usr/bin:/bin:/usr/sbin:/sbin;
+        fastcgi_intercept_errors on;
+        include        fastcgi_params;
     }
 }
