@@ -21,5 +21,6 @@ jobs:
         playbook: site.yml
         inventory: inventory.yml
         directory: ./ansible
-        private_key: ${{ secrets.ANSIBLE_PRIVATE_SSH_KEY }}
-        user: ${{ secrets.ANSIBLE_USERNAME }}       
+        key: ${{ secrets.ANSIBLE_PRIVATE_SSH_KEY }}    
+        options: |
+          --extra-vars "ansible_username='${{ secrets.ANSIBLE_USERNAME }}'"
