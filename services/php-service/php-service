@@ -1,11 +1,11 @@
 server {
-	listen 9000;
+    listen 9000;
 	server_name prod-02.ip03.ru;
+    root /apps/php-service;
+    index index.php;
 
-	location / {
-		proxy_pass  http://localhost:8000;
-		proxy_set_header    Host                $http_host;
-		proxy_set_header    X-Real-IP           $remote_addr;
-		proxy_set_header    X-Forwarded-For     $proxy_add_x_forwarded_for;
-	}
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;
+    }
 }

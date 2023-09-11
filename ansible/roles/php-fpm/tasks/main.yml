@@ -15,3 +15,17 @@
       - php8.2
       - php8.2-fpm
     state: present
+
+
+- name: Add php-service Nginx config
+  template:
+    src: ../services/php-service/php-service
+    dest: /etc/nginx/sites-available/php-service
+
+- name: Enable Nginx config
+  file:
+    src: /etc/nginx/sites-available/php-service
+    dest: /etc/nginx/sites-enabled/php-service
+    state: link
+  notify:
+    - Restart Nginx
