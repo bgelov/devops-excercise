@@ -5,6 +5,7 @@
   vars_files:
     - vars.yml
   roles:
+    - server-setup
     - nodejs
     - mysql
     - php-fpm
