@@ -13,6 +13,17 @@
   file:
     path: /etc/nginx/sites-enabled/default
     state: absent
+
+- name: Add apps Nginx config
+  copy:
+    src: ../services/nginx/apps.nginx
+    dest: /etc/nginx/sites-available/apps.nginx
+
+- name: Enable Nginx config
+  file:
+    src: /etc/nginx/sites-available/apps.nginx
+    dest: /etc/nginx/sites-enabled/apps.nginx
+    state: link
   notify:
     - Restart Nginx
 
