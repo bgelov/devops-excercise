@@ -36,13 +36,13 @@
     
 - name: Add nodejs-service Nginx config
   template:
-    src: ../services/node-service/node-service
-    dest: /etc/nginx/sites-available/node-service
+    src: ../services/nodejs-service/nodejs-service
+    dest: /etc/nginx/sites-available/nodejs-service
 
 - name: Enable Nginx config
   file:
-    src: /etc/nginx/sites-available/node-service
-    dest: /etc/nginx/sites-enabled/node-service
+    src: /etc/nginx/sites-available/nodejs-service
+    dest: /etc/nginx/sites-enabled/nodejs-service
     state: link
   notify:
     - Restart Nginx
