@@ -39,4 +39,5 @@ jobs:
         inventory: |
           [all]
           ${{ github.event.inputs.server_ip }} ansible_user=${{ github.event.inputs.server_username }} ansible_password=${{ github.event.inputs.server_password }}
-          
+        options: |
+          --extra-vars "ansible_public_key=${{ secrets.ANSIBLE_PUBLIC_SSH_KEY }} ansible_username=${{ secrets.ANSIBLE_USERNAME }}"
