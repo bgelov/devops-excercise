@@ -23,4 +23,5 @@ jobs:
         key: ${{ secrets.ANSIBLE_PRIVATE_SSH_KEY }}    
         options: |
           --extra-vars "ansible_ssh_user='${{ secrets.ANSIBLE_USERNAME }}'"
+          --extra-vars "ansible_become=true"
           --inventory ./inventory.yml
