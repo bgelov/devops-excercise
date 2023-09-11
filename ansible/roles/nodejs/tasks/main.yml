@@ -40,11 +40,11 @@
     src: ../services/nodejs-service/index.js
     dest: /apps/nodejs-service/index.js
 
-- name: UFW - Allow 8000 port
-  community.general.ufw:
-    rule: allow
-    port: '8000'
-    proto: tcp
+#- name: UFW - Allow 8000 port
+#  community.general.ufw:
+#    rule: allow
+#    port: '8000'
+#    proto: tcp
 
 - name: Create systemd service file
   template:
@@ -63,13 +63,13 @@
     
 - name: Add nodejs-service Nginx config
   template:
-    src: ../services/nodejs-service/nodejs-service
-    dest: /etc/nginx/sites-available/nodejs-service
+    src: ../services/nodejs-service/nodejs-service.nginx
+    dest: /etc/nginx/sites-available/nodejs-service.nginx
 
 - name: Enable Nginx config
   file:
-    src: /etc/nginx/sites-available/nodejs-service
-    dest: /etc/nginx/sites-enabled/nodejs-service
+    src: /etc/nginx/sites-available/nodejs-service.nginx
+    dest: /etc/nginx/sites-enabled/nodejs-service.nginx
     state: link
   notify:
     - Restart Nginx

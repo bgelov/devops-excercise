@@ -31,11 +31,11 @@
     src: ../services/php-service/index.php
     dest: /apps/php-service/index.php
     
-- name: UFW - Allow 9000 port
-  community.general.ufw:
-    rule: allow
-    port: '9000'
-    proto: tcp
+#- name: UFW - Allow 9000 port
+#  community.general.ufw:
+#    rule: allow
+#    port: '9000'
+#    proto: tcp
     
 - name: Add php-service PHP-FPM config
   copy:
@@ -44,13 +44,13 @@
 
 - name: Add php-service Nginx config
   copy:
-    src: ../services/php-service/php-service
-    dest: /etc/nginx/sites-available/php-service 
+    src: ../services/php-service/php-service.nginx
+    dest: /etc/nginx/sites-available/php-service.nginx
 
 - name: Enable Nginx config
   file:
-    src: /etc/nginx/sites-available/php-service
-    dest: /etc/nginx/sites-enabled/php-service
+    src: /etc/nginx/sites-available/php-service.nginx
+    dest: /etc/nginx/sites-enabled/php-service.nginx
     state: link
   notify:
     - Restart php8.2-fpm

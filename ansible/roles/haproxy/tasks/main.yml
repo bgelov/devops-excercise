@@ -12,8 +12,7 @@
 - name: Copy HAProxy configuration
   copy:
     src: ../services/haproxy/haproxy.cfg
-    dest: /etc/haproxy/haproxy.cfg
-    
+    dest: /etc/haproxy/haproxy.cfg 
 
 - name: Check HAProxy configuration
   command: haproxy -c -f /etc/haproxy/haproxy.cfg
@@ -26,3 +25,8 @@
   fail:
     msg: "HAProxy configuration is invalid"
   when: result.rc != 0
+
+- name: UFW - Allow Nginx Full connections
+  community.general.ufw:
+    rule: allow
+    name: Nginx Full
