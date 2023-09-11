@@ -4,11 +4,28 @@
 - name: Update apt repo and cache
   apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
   
-- name: Installing nodejs
+- name: Install GPG
+  apt:
+    name: gnupg
+    state: present
+
+- name: Install the gpg key for nodejs LTS
+  apt_key:
+    url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
+    state: present
+
+- name: Install the nodejs LTS repos
+  apt_repository:
+    repo: "deb https://deb.nodesource.com/node_18.x focal main"
+    state: present
+    update_cache: yes
+
+- name: Install NodeJS
+  tags: nodesjs, install
   apt:
     name: nodejs
-    state: present
-    
+    state: latest
+
 - name: Create node user
   user:
     name: "node"
@@ -46,4 +63,3 @@
     state: link
   notify:
     - Restart Nginx
-
