@@ -1,0 +1,3 @@
+db_user: service_user
+db_pass: p@ssw0rd
+db_name: service_db
