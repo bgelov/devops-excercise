@@ -1,0 +1,25 @@
+# Deploy workflow
+name: Deploy
+   
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Run services deploy
+      run: echo "Running services deploy..."
+
+    - name: Checkout code
+      uses: actions/checkout@v3
+          
+    - name: Run server deploy playbooks
+      uses: dawidd6/action-ansible-playbook@v2
+      with:
+        playbook: site.yml
+        directory: ./ansible
+        inventory_file: ./ansible/inventory.yml
+        private_key: ${{ secrets.ANSIBLE_PRIVATE_SSH_KEY }}
+        user: ${{ secrets.ANSIBLE_USERNAME }}       
