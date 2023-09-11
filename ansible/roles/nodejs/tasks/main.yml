@@ -11,12 +11,12 @@
 
 - name: Install the gpg key for nodejs LTS
   apt_key:
-    url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
+    url: "https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key"
     state: present
 
 - name: Install the nodejs LTS repos
   apt_repository:
-    repo: "deb https://deb.nodesource.com/node_18.x focal main"
+    repo: "deb https://deb.nodesource.com/node_20.x nodistro main"
     state: present
     update_cache: yes
 
