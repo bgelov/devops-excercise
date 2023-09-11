@@ -1,4 +1,4 @@
-# Nginx role
+# Nginx role tasks
 ---
 
 - name: Installing Nginx
@@ -18,8 +18,3 @@
   notify:
     - Restart Nginx
 
-handlers:
-- name: Restart Nginx
-  systemd:
-    name: nginx
-    state: restarted
