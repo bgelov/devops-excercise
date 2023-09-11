@@ -1,12 +1,13 @@
 # Apply default server settings
 ---
-- name: Update apt and install required system packages
+- name: Install required packages
   apt:
     pkg:
       - curl
       - vim
       - git
       - ufw
+      - htop
     state: latest
     update_cache: true
     

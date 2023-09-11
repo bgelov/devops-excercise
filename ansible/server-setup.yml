@@ -1,17 +1,9 @@
-# With Digital Ocean Best Practice
-# https://www.digitalocean.com/community/tutorials/how-to-use-ansible-to-automate-initial-server-setup-on-ubuntu-20-04
-
+# First server setup
 ---
 - hosts: all
   become: true
 
-  tasks:
-    - name: Install aptitude
-      apt:
-        name: aptitude
-        state: latest
-        update_cache: true
-        
+  tasks:        
     - name: Create ansible_user user with sudo privileges
       user:
         name: "{{ ansible_username }}"
@@ -41,13 +33,21 @@
         regexp: '^#?PermitRootLogin'
         line: 'PermitRootLogin prohibit-password'
 
-    - name: Update apt and install required system packages
+    - name: Disable tunneled clear-text passwords
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        state: present
+        regexp: '^PasswordAuthentication yes'
+        line: 'PasswordAuthentication no'
+
+    - name: Install required packages
       apt:
         pkg:
           - curl
           - vim
           - git
           - ufw
+          - htop
         state: latest
         update_cache: true
 
