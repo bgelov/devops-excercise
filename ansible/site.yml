@@ -1,6 +1,6 @@
 # Main yml file with roles
 ---
-- hosts: server1
+- hosts: web
   roles:
     - nginx
 

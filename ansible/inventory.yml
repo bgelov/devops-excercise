@@ -1,4 +1,7 @@
+---
 all:
-  hosts:
-    server1:
-      ansible_host: 45.90.220.42
+  children:
+    web:
+      hosts:
+        server1:
+          ansible_host: 45.90.220.42
