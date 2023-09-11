@@ -15,10 +15,10 @@ on:
         default: "root"
         type: string
     
-      server_password:
-        required: true
-        description: "Root password"
-        type: string
+#      server_password:
+#        required: true
+#        description: "Root password"
+#        type: string
     
 jobs:
   server-setup:
@@ -38,6 +38,14 @@ jobs:
         directory: ./ansible
         inventory: |
           [all]
-          ${{ github.event.inputs.server_ip }} ansible_user=${{ github.event.inputs.server_username }} ansible_password=${{ github.event.inputs.server_password }}
+          ${{ github.event.inputs.server_ip }} ansible_user=${{ github.event.inputs.server_username }} ansible_password='${{ secrets.TEMP_ROOT_PASSWORD }}'
         options: |
-          --extra-vars "ansible_public_key=${{ secrets.ANSIBLE_PUBLIC_SSH_KEY }} ansible_username=${{ secrets.ANSIBLE_USERNAME }}"
+          --extra-vars "ansible_public_key='${{ secrets.ANSIBLE_PUBLIC_SSH_KEY }}' ansible_username='${{ secrets.ANSIBLE_USERNAME }}'"
+
+    - name: Check SSH with ANSIBLE_PRIVATE_SSH_KEY
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ github.event.inputs.server_ip }}
+        username: ${{ secrets.ANSIBLE_USERNAME }}
+        key: ${{ secrets.ANSIBLE_PRIVATE_SSH_KEY }}
+        script: whoami
