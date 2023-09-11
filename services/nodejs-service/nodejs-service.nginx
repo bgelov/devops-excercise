@@ -1,6 +1,9 @@
 server {
-	listen 8080;
+	listen 8080 ssl;
 	server_name prod-02.ip03.ru;
+
+   ssl_certificate /etc/nginx/ssl/prod-02.ip03.ru_fullchain.pem;
+   ssl_certificate_key /etc/nginx/ssl/prod-02.ip03.ru_privkey.pem;
 
 	location /nodejs-service {
 		proxy_pass  http://localhost:8000/;

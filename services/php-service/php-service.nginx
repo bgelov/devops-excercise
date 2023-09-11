@@ -1,9 +1,9 @@
 server {
-	listen 443 ssl;
+	listen 9090 ssl;
 	server_name prod-02.ip03.ru;
 
-   ssl_certificate /etc/nginx/ssl/prod-02.ip03.ru.crt;
-   ssl_certificate_key /etc/nginx/ssl/prod-02.ip03.ru.key;
+   ssl_certificate /etc/nginx/ssl/prod-02.ip03.ru_fullchain.pem;
+   ssl_certificate_key /etc/nginx/ssl/prod-02.ip03.ru_privkey.pem;
     
 	root /apps/php-service;
 
