@@ -13,5 +13,16 @@
   copy:
     src: ../services/haproxy/haproxy.cfg
     dest: /etc/haproxy/haproxy.cfg
+    
+
+- name: Check HAProxy configuration
+  command: haproxy -c -f /etc/haproxy/haproxy.cfg
+  register: result
+  ignore_errors: true
+
+- name: Fail if HAProxy config is invalid
+  fail:
+    msg: "HAProxy configuration is invalid"
+  when: result.rc != 0
   notify:
     - Restart HAProxy
