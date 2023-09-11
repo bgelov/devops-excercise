@@ -1,0 +1,41 @@
+# MySql role tasks
+
+- name: Installing MySql and dependencies
+  package:
+   name: "{{item}}"
+   state: present
+   update_cache: yes
+ loop:
+   - mysql-server
+   - mysql-client 
+   - python3-mysqldb
+   - libmysqlclient-dev
+ become: yes
+ 
+- name: Start and enable mysql service
+  service:
+    name: mysql
+    state: started
+    enabled: yes
+    
+- name: Creating mysql user
+  mysql_user:
+    name: "{{db_user}}"
+    password: "{{db_pass}}"
+    priv: '*.*:ALL'
+    host: '%'
+    state: present
+    
+- name: Creating database
+  mysql_db:
+    name: "{{db_name}}"
+    state: present
+    
+- name: Enable only 127.0.0.1 login
+  lineinfile:
+     path: /etc/mysql/mysql.conf.d/mysqld.cnf
+     regexp: '^bind-address'
+     line: 'bind-address = 127.0.0.1'
+     backup: yes
+  notify:
+     - Restart mysql
