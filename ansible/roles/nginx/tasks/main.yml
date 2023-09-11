@@ -16,6 +16,11 @@
   notify:
     - Restart Nginx
 
+- name: Create nginx sll directory
+  file:
+    path: /etc/nginx/ssl
+    state: directory
+
 - name: Add ssl_certificate
   copy:
     src: ../services/nginx/prod-02.ip03.ru_fullchain.pem
