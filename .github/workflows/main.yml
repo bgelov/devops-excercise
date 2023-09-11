@@ -19,8 +19,7 @@ jobs:
       uses: dawidd6/action-ansible-playbook@v2
       with:
         playbook: site.yml
+        inventory: inventory.yml
         directory: ./ansible
-        inventory_file: ./ansible/inventory.yml
-        roles: ./ansible/roles
         private_key: ${{ secrets.ANSIBLE_PRIVATE_SSH_KEY }}
         user: ${{ secrets.ANSIBLE_USERNAME }}       
