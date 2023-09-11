@@ -1,8 +1,12 @@
-# Nginx role handlers
+# PHP_FPM role handlers
 ---
 
 - name: Restart php8.2-fpm
   systemd:
     name: php8.2-fpm
     state: restarted
-    ignore_errors: yes
+
+- name: Restart Nginx
+  systemd:
+    name: nginx
+    state: restarted

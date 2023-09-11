@@ -16,13 +16,20 @@
       - php8.2-fpm
       - php8.2-mysql
     state: present
-  notify:
-    - Restart php8.2-fpm
+    
+- name: Create phpfpm user
+  user:
+    name: "phpfpm"
+    state: present
+    
+- name: Remove files in app directory
+  ansible.builtin.command:
+    cmd: "rm -rf /apps/php-service/*"
 
 - name: Copy php app files
   copy:
     src: ../services/php-service/
-    dest: /apps/php-service
+    dest: /apps/php-service/
     
 - name: UFW - Allow 9000 port
   community.general.ufw:
@@ -30,10 +37,15 @@
     port: '9000'
     proto: tcp
     
+- name: Add php-service PHP-FPM config
+  copy:
+    src: ../services/php-service/php-service-pool.conf
+    dest: /etc/php/8.2/fpm/pool.d/php-service-pool.conf
+
 - name: Add php-service Nginx config
-  template:
+  copy:
     src: ../services/php-service/php-service
-    dest: /etc/nginx/sites-available/php-service
+    dest: /etc/nginx/sites-available/php-service 
 
 - name: Enable Nginx config
   file:
@@ -41,4 +53,5 @@
     dest: /etc/nginx/sites-enabled/php-service
     state: link
   notify:
+    - Restart php8.2-fpm
     - Restart Nginx
