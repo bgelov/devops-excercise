@@ -1,5 +1,5 @@
 server {
-         listen 9000;
+         listen 9090;
 		 server_name 45.90.220.42 prod-02.ip03.ru;
 		 root /apps/php-service;
 
@@ -7,7 +7,7 @@ server {
          error_log  /var/log/nginx/prod-02.ip03.ru-error.log error;
          index index.html index.htm index.php;
 
-         location / {
+         location /php-service {
                       try_files $uri $uri/ /index.php$is_args$args;
          }
 
