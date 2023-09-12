@@ -8,6 +8,8 @@
 
 Для простого запуска сценариев и деплоя я сделал разворачивание инфраструктуры с помощью Ansible через GitHub Actions.
 
+https://github.com/bgelov/devops-excercise/actions
+
 Server_setup_workflow предназначен для первоначальной настройки сервера.
 Необходимо запустить Workflow с параметрами:
 - ip-адрес
