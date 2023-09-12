@@ -1,7 +1,7 @@
 ## Тестовый деплой
 
-https://prod-02.ip03.ru/php-service/
-https://prod-02.ip03.ru/nodejs-service/
+- [https://prod-02.ip03.ru/php-service/](https://prod-02.ip03.ru/php-service/)
+- https://prod-02.ip03.ru/nodejs-service/
 
 
 ## Запуск решения
@@ -14,11 +14,11 @@ Server_setup_workflow предназначен для первоначально
 - имя root пользователя
 
 Так же в секреты репозитория необходимо добавить переменные: 
-- TEMP_ROOT_PASSWORD - пароль от root пользователя под которым будет выполняться первоначальная настройка
+- TEMP_ROOT_PASSWORD - temp пароль root пользователя под которым будет выполняться первоначальная настройка
 - ANSIBLE_PRIVATE_SSH_KEY - приватный ключ используемый ansible для подключения к хостам
 - ANSIBLE_PUBLIC_SSH_KEY - публичный ключ для добавления к учётной записи на хост
 - ANSIBLE_USERNAME - имя пользователя под которым будет работать ansoble на машине
-- ANSIBLE_VAULT_PASSWORD - для расшифровки vars.yml
+- ANSIBLE_VAULT_PASSWORD - пароль для расшифровки vars.yml
 
 ```
 Шифрование файла: ansible-vault encrypt vars.yml
@@ -26,11 +26,17 @@ Server_setup_workflow предназначен для первоначально
 Редактирование: ansible-vault edit vars.yml
 ```
 
+![image](https://github.com/bgelov/devops-excercise/assets/5302940/3a2980d9-79c7-4a2d-acdf-e4ecfdb99e3e)
+
+
 Workflow Deploy разворачивает инфраструктуру на машины, согласно ролям из site.yml и машинам из inventory.yml.
 
 ## Процесс деплоя
 
 Создаётся пустая машина с установленной Ubuntu и задаётся временный пароль пользователя root, который вносится в секрет TEMP_ROOT_PASSWORD.
+
+![image](https://github.com/bgelov/devops-excercise/assets/5302940/32e5761d-4c3b-436d-ae36-1ff12f8a835c)
+
 
 После этого запускаем Server_setup_workflow, который производит первоначальную настройку сервера, создаёт пользователя для дальнейшей работы, включает использование подключения по SSH, отключает вход по паролю, настраивает базово фаервол UFW и устанавливает базово необходимые пакеты. Здесь можно улучшать процесс бесконечно, в зависимости от требований ИБ конкретной компании.
 
