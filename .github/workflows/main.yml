@@ -20,7 +20,8 @@ jobs:
       with:
         playbook: site.yml
         directory: ./ansible
-        key: ${{ secrets.ANSIBLE_PRIVATE_SSH_KEY }}    
+        key: ${{ secrets.ANSIBLE_PRIVATE_SSH_KEY }} 
+        vault_password: ${{ secrets.ANSIBLE_VAULT_PASSWORD }}
         options: |
           --extra-vars "ansible_ssh_user='${{ secrets.ANSIBLE_USERNAME }}'"
           --extra-vars "ansible_become=true"
