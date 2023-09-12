@@ -43,6 +43,8 @@
   notify:
     - "Restart php{{ php_version }}-fpm"
 
+# For test
+
 #- name: Add php-service Nginx config
 #  copy:
 #    src: ../services/php-service/php-service.nginx
