@@ -16,28 +16,28 @@
 
 - name: Add apps Nginx config
   copy:
-    src: {{ nginx_source_config_path }}
-    dest: {{ nginx_apps_config_path }}
+    src: "{{ nginx_source_config_path }}"
+    dest: "{{ nginx_apps_config_path }}"
 
 - name: Enable Nginx config
   file:
-    src: {{ nginx_apps_config_path }}
-    dest: {{ nginx_destination_config_path }}
+    src: "{{ nginx_apps_config_path }}"
+    dest: "{{ nginx_destination_config_path }}"
     state: link
   notify:
     - Restart Nginx
 
 - name: Create nginx sll directory
   file:
-    path: {{ nginx_ssl_directory_path }}
+    path: "{{ nginx_ssl_directory_path }}"
     state: directory
 
 - name: Add ssl_certificate
   copy:
-    src: {{ ssl_certificate_source }}
-    dest: {{ ssl_certificate_destination }}
+    src: "{{ ssl_certificate_source }}"
+    dest: "{{ ssl_certificate_destination }}"
 
 - name: Add ssl_certificate_key
   copy:
-    src: {{ ssl_certificate_key_source }}
-    dest: {{ ssl_certificate_key_destination }}
+    src: "{{ ssl_certificate_key_source }}"
+    dest: "{{ ssl_certificate_key_destination }}"

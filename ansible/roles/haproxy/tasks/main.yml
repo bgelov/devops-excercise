@@ -11,11 +11,11 @@
 
 - name: Copy HAProxy configuration
   copy:
-    src: {{ haproxy_source_config_path }}
-    dest: {{ haproxy_config_path }} 
+    src: "{{ haproxy_source_config_path }}"
+    dest: "{{ haproxy_config_path }}"
 
 - name: Check HAProxy configuration
-  command: haproxy -c -f {{ haproxy_config_path }}
+  command: "haproxy -c -f {{ haproxy_config_path }}"
   register: result
   ignore_errors: true
   notify:

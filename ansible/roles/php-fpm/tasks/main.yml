@@ -24,7 +24,7 @@
     
 - name: Create php app directory
   file:
-    path: {{ php_service_app_directory_path }}
+    path: "{{ php_service_app_directory_path }}"
     state: directory
 
 - name: Remove files in app directory
@@ -33,13 +33,13 @@
 
 - name: Copy php app files
   copy:
-    src: {{ php_service_app_source_path }}
-    dest: {{ php_service_app_destination_path }}
+    src: "{{ php_service_app_source_path }}"
+    dest: "{{ php_service_app_destination_path }}"
         
 - name: Add php-service PHP-FPM config
   copy:
-    src: {{ php_fpm_source_config_path }}
-    dest: {{ php_fpm_destination_config_path }}
+    src: "{{ php_fpm_source_config_path }}"
+    dest: "{{ php_fpm_destination_config_path }}"
   notify:
     - "Restart php{{ php_version }}-fpm"
 
