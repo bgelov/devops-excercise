@@ -1,3 +1,5 @@
+Решение в [SETUP.md](https://github.com/bgelov/devops-excercise/blob/main/SETUP.md)
+
 # Introduction
 
 We are building an infrastructure that consists of multiple hypothetical applications. 
