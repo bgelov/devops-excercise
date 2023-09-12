@@ -3,10 +3,10 @@
 try {
   http_response_code(200);
 
-  $host = getenv('DB_HOST');
-  $dbname = getenv('DB_NAME');
-  $user = getenv('DB_USER');
-  $pass = getenv('DB_PASS');
+  $host = 'localhost';
+  $dbname = 'service_db';
+  $user = 'service_user';
+  $pass = 'p@ssw0rd';
 
   $dbh = new PDO("mysql:host={$host};dbname={$dbname}", $user, $pass);
 
