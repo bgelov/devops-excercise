@@ -1,3 +1,9 @@
+## Тестовый деплой
+
+https://prod-02.ip03.ru/php-service/
+https://prod-02.ip03.ru/nodejs-service/
+
+
 ## Запуск решения
 
 Для простого запуска сценариев и деплоя я сделал разворачивание инфраструктуры с помощью Ansible через GitHub Actions.
