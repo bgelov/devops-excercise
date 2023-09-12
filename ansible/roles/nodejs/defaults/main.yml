@@ -1,0 +1,7 @@
+---
+
+nodejs_version:
+  "20"
+
+nodejs_service_app_directory_path:
+  "/apps/nodejs-service"

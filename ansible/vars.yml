@@ -2,6 +2,9 @@
 php_version:
   "8.2"
 
+node_version:
+  "20"
+
 # Mysql
 db_user: service_user
 db_pass: p@ssw0rd
