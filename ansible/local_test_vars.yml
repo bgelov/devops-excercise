@@ -1,0 +1,29 @@
+# ip адрес сервера
+server_ip: "192.168.0.136"
+# Root пользователь сервера
+server_username: "root"
+# Пароль root пользователя
+temp_root_password: "..."
+ansible_become_password: "{{ temp_root_password }}"
+
+# Настройки сервисов
+php_version: "8.2"
+nodejs_version: "20"
+# Mysql
+db_user: "..."
+db_pass: "..."
+db_name: "..."
+db_host: "localhost"
+
+# Пользователь ansible
+ansible_username: "ansible"
+
+# Публичный ключ
+ansible_public_key: "..."
+
+# Приватный ключ
+ansible_private_key: |
+  -----BEGIN OPENSSH PRIVATE KEY-----
+  ....
+  -----END OPENSSH PRIVATE KEY-----
+
