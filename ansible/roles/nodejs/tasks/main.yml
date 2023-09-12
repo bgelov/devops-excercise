@@ -47,8 +47,8 @@
 
 - name: Create systemd service file
   template:
-    src: {{ nodejs_service_systemd_source_path }}
-    dest: {{ nodejs_service_systemd_destination_path }}
+    src: "{{ nodejs_service_systemd_source_path }}"
+    dest: "{{ nodejs_service_systemd_destination_path }}"
 
 - name: Reload systemd
   systemd:
