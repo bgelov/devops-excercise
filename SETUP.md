@@ -12,6 +12,13 @@ TEMP_ROOT_PASSWORD - пароль от root пользователя под ко
 ANSIBLE_PRIVATE_SSH_KEY - приватный ключ используемый ansible для подключения к хостам
 ANSIBLE_PUBLIC_SSH_KEY - публичный ключ для добавления к учётной записи на хост
 ANSIBLE_USERNAME - имя пользователя под которым будет работать ansoble на машине
+ANSIBLE_VAULT_PASSWORD - для расшифровки vars.yml
+
+```
+Шифрование файла: ansible-vault encrypt vars.yml
+Расшифровка: ansible-vault decrypt vars.yml
+Редактирование: ansible-vault edit vars.yml
+```
 
 Workflow Deploy разворачивает инфраструктуру на машины, согласно ролям из site.yml и машинам из inventory.yml.
 
