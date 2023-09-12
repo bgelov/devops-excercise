@@ -1,3 +1,9 @@
 ---
 nodejs_version: "20"
+
 nodejs_service_app_directory_path: "/apps/nodejs-service"
+nodejs_service_app_source_path: "../services/nodejs-service/index.js"
+nodejs_service_app_destination_path: "/apps/nodejs-service/index.js"
+
+nodejs_service_systemd_source_path: "../services/nodejs-service/nodejs-service.service"
+nodejs_service_systemd_destination_path: "/etc/systemd/system/nodejs-service.service"
