@@ -11,16 +11,11 @@
 
 - name: Copy HAProxy configuration
   copy:
-    src: ../services/haproxy/haproxy.cfg
-    dest: /etc/haproxy/haproxy.cfg 
-
-- name: Copy ssl certificate
-  copy:
-    src: ../services/haproxy/prod-02.ip03.ru.pem
-    dest: /etc/haproxy/prod-02.ip03.ru.pem
+    src: {{ haproxy_source_config_path }}
+    dest: {{ haproxy_config_path }} 
 
 - name: Check HAProxy configuration
-  command: haproxy -c -f /etc/haproxy/haproxy.cfg
+  command: haproxy -c -f {{ haproxy_config_path }}
   register: result
   ignore_errors: true
   notify:
@@ -31,7 +26,12 @@
     msg: "HAProxy configuration is invalid"
   when: result.rc != 0
 
-- name: UFW - Allow Nginx Full connections
+- name: UFW - Allow TCP 80 and 443 ports
   community.general.ufw:
     rule: allow
     name: Nginx Full
+
+#- name: Copy ssl certificate
+#  copy:
+#    src: ../services/haproxy/prod-02.ip03.ru.pem
+#    dest: /etc/haproxy/prod-02.ip03.ru.pem

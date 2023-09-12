@@ -1,0 +1,6 @@
+---
+haproxy_config_path:
+  "/etc/haproxy/haproxy.cfg"
+
+haproxy_source_config_path:
+  "../services/haproxy/haproxy.cfg"

@@ -16,28 +16,28 @@
 
 - name: Add apps Nginx config
   copy:
-    src: ../services/nginx/apps.nginx
-    dest: /etc/nginx/sites-available/apps.nginx
+    src: {{ nginx_source_config_path }}
+    dest: {{ nginx_apps_config_path }}
 
 - name: Enable Nginx config
   file:
-    src: /etc/nginx/sites-available/apps.nginx
-    dest: /etc/nginx/sites-enabled/apps.nginx
+    src: {{ nginx_apps_config_path }}
+    dest: {{ nginx_destination_config_path }}
     state: link
   notify:
     - Restart Nginx
 
 - name: Create nginx sll directory
   file:
-    path: /etc/nginx/ssl
+    path: {{ nginx_ssl_directory_path }}
     state: directory
 
 - name: Add ssl_certificate
   copy:
-    src: ../services/nginx/prod-02.ip03.ru_fullchain.pem
-    dest: /etc/nginx/ssl/prod-02.ip03.ru_fullchain.pem
+    src: {{ ssl_certificate_source }}
+    dest: {{ ssl_certificate_destination }}
 
 - name: Add ssl_certificate_key
   copy:
-    src: ../services/nginx/prod-02.ip03.ru_privkey.pem
-    dest: /etc/nginx/ssl/prod-02.ip03.ru_privkey.pem
+    src: {{ ssl_certificate_key_source }}
+    dest: {{ ssl_certificate_key_destination }}

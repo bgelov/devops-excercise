@@ -9,12 +9,12 @@
 - name: Update apt repo and cache
   apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
 
-- name: Install PHP 8.2 and PHP-FPM 8.2
+- name: "Install PHP {{ php_version }} and PHP-FPM {{ php_version }}"
   apt:
     name:
-      - php8.2
-      - php8.2-fpm
-      - php8.2-mysql
+      - "php{{ php_version }}"
+      - "php{{ php_version }}-fpm"
+      - "php{{ php_version }}-mysql"
     state: present
     
 - name: Create phpfpm user
@@ -24,24 +24,24 @@
     
 - name: Create php app directory
   file:
-    path: /apps/php-service
+    path: {{ php_service_app_directory_path }}
     state: directory
 
 - name: Remove files in app directory
   ansible.builtin.command:
-    cmd: "rm -rf /apps/php-service/*"
+    cmd: "rm -rf {{ php_service_app_directory_path }}/*"
 
 - name: Copy php app files
   copy:
-    src: ../services/php-service/index.php
-    dest: /apps/php-service/index.php
+    src: {{ php_service_app_source_path }}
+    dest: {{ php_service_app_destination_path }}
         
 - name: Add php-service PHP-FPM config
   copy:
-    src: ../services/php-service/php-service-pool.conf
-    dest: /etc/php/8.2/fpm/pool.d/php-service-pool.conf
+    src: {{ php_fpm_source_config_path }}
+    dest: {{ php_fpm_destination_config_path }}
   notify:
-    - Restart php8.2-fpm
+    - "Restart php{{ php_version }}-fpm"
 
 #- name: Add php-service Nginx config
 #  copy:
