@@ -1,7 +1,7 @@
 ## Тестовый деплой
 
-https://prod-02.ip03.ru/php-service/
-https://prod-02.ip03.ru/nodejs-service/
+- [https://prod-02.ip03.ru/php-service/](https://prod-02.ip03.ru/php-service/)
+- https://prod-02.ip03.ru/nodejs-service/
 
 
 ## Запуск решения
