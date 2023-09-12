@@ -16,7 +16,7 @@
 
 - name: Install the nodejs LTS repos
   apt_repository:
-    repo: "deb https://deb.nodesource.com/node_20.x nodistro main"
+    repo: "deb https://deb.nodesource.com/node_{{ nodejs_version }}.x nodistro main"
     state: present
     update_cache: yes
 
@@ -33,22 +33,22 @@
 
 - name: Create nodejs app directory
   file:
-    path: /apps/nodejs-service
+    path: "{{ nodejs_service_app_directory_path }}"
     state: directory
 
 - name: Remove files in app directory
   ansible.builtin.command:
-    cmd: "rm -rf /apps/nodejs-service/*"
+    cmd: "rm -rf {{ nodejs_service_app_directory_path }}/*"
     
 - name: Copy node app files
   copy:
-    src: ../services/nodejs-service/index.js
-    dest: /apps/nodejs-service/index.js
+    src: "{{ nodejs_service_app_source_path }}"
+    dest: "{{ nodejs_service_app_destination_path }}"
 
 - name: Create systemd service file
   template:
-    src: ../services/nodejs-service/nodejs-service.service
-    dest: /etc/systemd/system/nodejs-service.service
+    src: {{ nodejs_service_systemd_source_path }}
+    dest: {{ nodejs_service_systemd_destination_path }}
 
 - name: Reload systemd
   systemd:

@@ -1,6 +1,10 @@
 ---
-nginx_apps_config_path:
-  "/etc/nginx/sites-available/apps.nginx"
+nginx_apps_config_path: "/etc/nginx/sites-available/apps.nginx"
+nginx_source_config_path: "../services/nginx/apps.nginx"
+nginx_destination_config_path: "/etc/nginx/sites-enabled/apps.nginx"
+nginx_ssl_directory_path: "/etc/nginx/ssl"
 
-nginx_source_config_path:
-  "../services/nginx/apps.nginx"
+ssl_certificate_source: "../services/nginx/prod-02.ip03.ru_fullchain.pem"
+ssl_certificate_destination: "/etc/nginx/ssl/prod-02.ip03.ru_fullchain.pem"
+ssl_certificate_key_source: "../services/nginx/prod-02.ip03.ru_privkey.pem"
+ssl_certificate_key_destination: "/etc/nginx/ssl/prod-02.ip03.ru_privkey.pem"

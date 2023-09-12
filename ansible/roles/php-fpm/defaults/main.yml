@@ -1,7 +1,9 @@
 ---
 php_version: "8.2"
+
 php_fpm_source_config_path: "../services/php-service/php-service-pool.conf"
 php_fpm_destination_config_path: "/etc/php/{{ php_version }}/fpm/pool.d/php-service-pool.conf"
+
 php_service_app_directory_path: "/apps/php-service"
 php_service_app_source_path: "../services/php-service/index.php"
 php_service_app_destination_path: "/apps/php-service/index.php"
