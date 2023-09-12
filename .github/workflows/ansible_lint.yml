@@ -1,4 +1,4 @@
-name: Ansible Lint
+name: Ansible_lint
 
 on:
   push:
@@ -7,25 +7,18 @@ on:
   pull_request:
     paths:
       - 'ansible/roles/**'
-
+  workflow_dispatch:
+  
 jobs:
   lint-test:
     runs-on: ubuntu-latest
-
+    
     steps:
-    - name: Run ansible lint test
-      run: echo "Running ansible lint test..."
-
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
-
-    - name: Install ansible-lint
-      run: pip install ansible-lint
-
-    - name: Run ansible-lint
-      run: ansible-lint ansible/ --skip-list "syntax-check"
+      - name: Checkout the codebase
+        uses: actions/checkout@v3
+    
+      - name: Setup Lint
+        uses: bec-galaxy/setup-lint@v1
+    
+      - name: Run Lint tests
+        run: ansible-lint
